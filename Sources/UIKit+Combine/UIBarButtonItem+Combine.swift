@@ -8,19 +8,11 @@
 import UIKit
 import Combine
 
-extension UIBarButtonItem: Combinable {}
-
-extension Combinable where Self: UIBarButtonItem {
-    func publisher() -> UIBarButtonItem.BarButtonItemPublisher {
-        UIBarButtonItem.BarButtonItemPublisher(barButtonItem: self)
-    }
-}
-
-extension UIBarButtonItem {
+public extension UIBarButtonItem {
     
     struct BarButtonItemPublisher: Publisher {
-        typealias Output = Void
-        typealias Failure = Never
+        public typealias Output = Void
+        public typealias Failure = Never
         
         let barButtonItem: UIBarButtonItem
         
@@ -28,7 +20,7 @@ extension UIBarButtonItem {
             self.barButtonItem = barButtonItem
         }
         
-        func receive<S>(subscriber: S) where S : Subscriber, Never == S.Failure, Void == S.Input {
+        public func receive<S>(subscriber: S) where S : Subscriber, Never == S.Failure, Void == S.Input {
             let subscription = BarButtonSubscription(barButtonItem: self.barButtonItem, subscriber: subscriber)
             subscriber.receive(subscription: subscription)
         }
@@ -50,9 +42,9 @@ extension UIBarButtonItem {
             _ = subscriber?.receive()
         }
         
-        func request(_ demand: Subscribers.Demand) {}
+        public func request(_ demand: Subscribers.Demand) {}
         
-        func cancel() {
+        public func cancel() {
             subscriber = nil
             barButtonItem?.target = nil
             barButtonItem?.action = nil

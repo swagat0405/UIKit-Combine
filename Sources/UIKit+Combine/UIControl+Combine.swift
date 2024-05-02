@@ -8,16 +8,16 @@
 import Combine
 import UIKit
 
-extension UIControl {
+public extension UIControl {
     
     struct ControlPublisher<Control: UIControl>: Publisher {
-        typealias Output = Control
-        typealias Failure = Never
+        public typealias Output = Control
+        public typealias Failure = Never
         
         let control: Control
         let event: UIControl.Event
         
-        func receive<S>(subscriber: S) where S : Subscriber, Never == S.Failure, Control == S.Input {
+        public func receive<S>(subscriber: S) where S : Subscriber, Never == S.Failure, Control == S.Input {
             let subscription = ControlSubscription(control: control, event: event, subscriber: subscriber)
             subscriber.receive(subscription: subscription)
         }
@@ -40,20 +40,11 @@ extension UIControl {
             _ = subscriber?.receive(control)
         }
         
-        func request(_ demand: Subscribers.Demand) { }
+        public func request(_ demand: Subscribers.Demand) { }
         
-        func cancel() {
+        public func cancel() {
             subscriber = nil
             control.removeTarget(self, action: #selector(controlEventTriggered), for: event)
         }
-    }
-}
-
-protocol Combinable {}
-extension UIControl: Combinable {}
-
-extension Combinable where Self: UIControl {
-    func publisher(for event: UIControl.Event) -> UIControl.ControlPublisher<Self> {
-        UIControl.ControlPublisher(control: self, event: event)
     }
 }
