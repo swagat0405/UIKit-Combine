@@ -62,14 +62,18 @@ public extension Combinable where Self: UITableView {
         UITableView.TableViewDelegatePublisher(tableView: self)
     }
     
-    func heightForRow(_ height: ((UITableView, IndexPath) -> CGFloat)?) -> UITableView.TableViewDelegatePublisher {
-        UITableView.TableViewDelegatePublisher(tableView: self, height: height)
+    func onDidEndMultipleSelectionInteraction() -> UITableView.TableViewDelegatePublisher {
+        UITableView.TableViewDelegatePublisher(tableView: self)
     }
     
-    func rowHeight(_ height: CGFloat) -> UITableView.TableViewDelegatePublisher {
-        UITableView.TableViewDelegatePublisher(tableView: self, rowHeight: height)
-    }
-    func estimatedRowHeight(_ height: CGFloat) -> UITableView.TableViewDelegatePublisher {
-        UITableView.TableViewDelegatePublisher(tableView: self, rowHeight: height)
-    }
+//    func heightForRow(_ action: ((IndexPath) -> CGFloat)?) -> UITableView.TableViewDelegatePublisher {
+//        UITableView.TableViewDelegatePublisher(tableView: self, action: action)
+//    }
+//    
+//    func rowHeight(_ height: CGFloat) -> UITableView.TableViewDelegatePublisher {
+//        UITableView.TableViewDelegatePublisher(tableView: self, rowHeight: height)
+//    }
+//    func estimatedRowHeight(_ height: CGFloat) -> UITableView.TableViewDelegatePublisher {
+//        UITableView.TableViewDelegatePublisher(tableView: self, rowHeight: height)
+//    }
 }
