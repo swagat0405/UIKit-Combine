@@ -62,7 +62,9 @@ public extension Combinable where Self: UITableView {
         UITableView.TableViewDelegatePublisher(tableView: self)
     }
     
-    
+    func heightForRow(_ height: ((UITableView, IndexPath) -> CGFloat)?) -> UITableView.TableViewDelegatePublisher {
+        UITableView.TableViewDelegatePublisher(tableView: self, height: height)
+    }
     
     func rowHeight(_ height: CGFloat) -> UITableView.TableViewDelegatePublisher {
         UITableView.TableViewDelegatePublisher(tableView: self, rowHeight: height)
