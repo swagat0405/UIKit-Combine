@@ -31,7 +31,11 @@ public extension Combinable where Self: UIBarButtonItem {
 // MARK: - UITableView
 extension UITableView: Combinable {}
 public extension Combinable where Self: UITableView {
-    func onSelectRow() -> UITableView.TableViewPublisher {
-        UITableView.TableViewPublisher(tableView: self)
+    func onSelectRow() -> UITableView.TableViewDelegatePublisher {
+        UITableView.TableViewDelegatePublisher(tableView: self)
+    }
+    
+    func rowHeight(_ height: CGFloat) -> UITableView.TableViewDelegatePublisher {
+        UITableView.TableViewDelegatePublisher(tableView: self)
     }
 }
