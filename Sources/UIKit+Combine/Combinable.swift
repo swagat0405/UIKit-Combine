@@ -27,3 +27,11 @@ public extension Combinable where Self: UIBarButtonItem {
         UIBarButtonItem.BarButtonItemPublisher(barButtonItem: self)
     }
 }
+
+// MARK: - UITableView
+extension UITableView: Combinable {}
+public extension Combinable where Self: UITableView {
+    func onSelectRow() -> UITableView.TableViewPublisher {
+        UITableView.TableViewPublisher(tableView: self)
+    }
+}
