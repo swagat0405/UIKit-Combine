@@ -31,11 +31,43 @@ public extension Combinable where Self: UIBarButtonItem {
 // MARK: - UITableView
 extension UITableView: Combinable {}
 public extension Combinable where Self: UITableView {
-    func onSelectRow() -> UITableView.TableViewDelegatePublisher {
+    func onDidSelectRow() -> UITableView.TableViewDelegatePublisher {
+        UITableView.TableViewDelegatePublisher(tableView: self)
+    }
+    func onDidDeSelectRow() -> UITableView.TableViewDelegatePublisher {
+        UITableView.TableViewDelegatePublisher(tableView: self)
+    }
+    func onWillDisplayCell() -> UITableView.TableViewDelegatePublisher {
+        UITableView.TableViewDelegatePublisher(tableView: self)
+    }
+    func onDidEndDisplaying() -> UITableView.TableViewDelegatePublisher {
+        UITableView.TableViewDelegatePublisher(tableView: self)
+    }
+    func onWillBeginEditingRow() -> UITableView.TableViewDelegatePublisher {
+        UITableView.TableViewDelegatePublisher(tableView: self)
+    }
+    func onDidEndEditingRow() -> UITableView.TableViewDelegatePublisher {
+        UITableView.TableViewDelegatePublisher(tableView: self)
+    }
+    func onDidHighlightRow() -> UITableView.TableViewDelegatePublisher {
+        UITableView.TableViewDelegatePublisher(tableView: self)
+    }
+    func onAccessoryButtonTappedForRow() -> UITableView.TableViewDelegatePublisher {
+        UITableView.TableViewDelegatePublisher(tableView: self)
+    }
+    func onPerformPrimaryActionForRow() -> UITableView.TableViewDelegatePublisher {
+        UITableView.TableViewDelegatePublisher(tableView: self)
+    }
+    func onDidBeginMultipleSelectionInteraction() -> UITableView.TableViewDelegatePublisher {
         UITableView.TableViewDelegatePublisher(tableView: self)
     }
     
+    
+    
     func rowHeight(_ height: CGFloat) -> UITableView.TableViewDelegatePublisher {
+        UITableView.TableViewDelegatePublisher(tableView: self, rowHeight: height)
+    }
+    func estimatedRowHeight(_ height: CGFloat) -> UITableView.TableViewDelegatePublisher {
         UITableView.TableViewDelegatePublisher(tableView: self, rowHeight: height)
     }
 }
