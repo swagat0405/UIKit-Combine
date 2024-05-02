@@ -54,9 +54,9 @@ public extension Combinable where Self: UITableView {
         }
     }
     
-//    func onDidSelectRow() -> UITableView.TableViewDelegatePublisher {
-//        UITableView.TableViewDelegatePublisher(tableView: self)
-//    }
+    func onDidSelectRow() -> UITableView.TableViewDelegatePublisher {
+        UITableView.TableViewDelegatePublisher(tableView: self)
+    }
 //    func onDidDeSelectRow() -> UITableView.TableViewDelegatePublisher {
 //        UITableView.TableViewDelegatePublisher(tableView: self)
 //    }

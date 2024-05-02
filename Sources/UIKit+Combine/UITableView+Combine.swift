@@ -55,6 +55,7 @@ public extension UITableView {
         
         // MARK: - IndexPath -> Void
         public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            print("Sending subscribe")
             _ = subscriber?.receive(indexPath)
         }
         public func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -187,7 +188,7 @@ public extension UITableView {
             guard
                 let action = action,
                 let height = action(section) as? CGFloat
-            else { return UITableView.automaticDimension }
+            else { return 0.0 }
             return height
         }
         
@@ -195,7 +196,7 @@ public extension UITableView {
             guard
                 let action = action,
                 let height = action(section) as? CGFloat
-            else { return UITableView.automaticDimension }
+            else { return 0.0 }
             return height
         }
         
@@ -203,7 +204,7 @@ public extension UITableView {
             guard
                 let action = action,
                 let height = action(section) as? CGFloat
-            else { return UITableView.automaticDimension }
+            else { return 0.0 }
             return height
         }
         
@@ -211,7 +212,7 @@ public extension UITableView {
             guard
                 let action = action,
                 let height = action(section) as? CGFloat
-            else { return UITableView.automaticDimension }
+            else { return 0.0 }
             return height
         }
         
