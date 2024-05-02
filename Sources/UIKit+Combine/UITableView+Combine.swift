@@ -15,9 +15,10 @@ public extension UITableView {
         public typealias Failure = Never
         
         let tableView: UITableView
+        var rowHeight: CGFloat? = nil
         
         public func receive<S>(subscriber: S) where S : Subscriber, Never == S.Failure, IndexPath == S.Input {
-            let subscription = TableViewSubscription(tableView: self.tableView, subscriber: subscriber)
+            let subscription = TableViewSubscription(tableView: self.tableView, subscriber: subscriber, rowHeight: rowHeight ?? UITableView.automaticDimension)
             subscriber.receive(subscription: subscription)
         }
     }
