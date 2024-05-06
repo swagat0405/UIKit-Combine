@@ -14,8 +14,35 @@ public protocol Combinable {}
 extension UIControl: Combinable {}
 
 public extension Combinable where Self: UIControl {
-    func publisher(for event: UIControl.Event) -> UIControl.ControlPublisher<Self> {
-        UIControl.ControlPublisher(control: self, event: event)
+    func publisher(for event: UIControl.Event) -> UIControl.Publisher<Self> {
+        UIControl.Publisher(control: self, event: event)
+    }
+}
+
+// MARK: - UIButton
+public extension Combinable where Self: UIButton {
+    var onTouchUpInside: UIControl.Publisher<Self> {
+        .init(control: self, event: .touchUpInside)
+    }
+}
+
+// MARK: - UISlider
+public extension Combinable where Self: UISlider {
+    var onValueChanged: UIControl.Publisher<Self> {
+        .init(control: self, event: .valueChanged)
+    }
+}
+
+// MARK: - UITextField
+public extension Combinable where Self: UITextField {
+    var onEditingChanged: UIControl.Publisher<Self> {
+        .init(control: self, event: .editingChanged)
+    }
+    var onEditingDidEnd: UIControl.Publisher<Self> {
+        .init(control: self, event: .editingDidEnd)
+    }
+    var onEditingDidBegin: UIControl.Publisher<Self> {
+        .init(control: self, event: .editingDidBegin)
     }
 }
 
@@ -23,11 +50,7 @@ public extension Combinable where Self: UIControl {
 extension UIBarButtonItem: Combinable {}
 
 public extension Combinable where Self: UIBarButtonItem {
-    func publisher() -> UIBarButtonItem.BarButtonItemPublisher {
+    var onTap: UIBarButtonItem.BarButtonItemPublisher {
         UIBarButtonItem.BarButtonItemPublisher(barButtonItem: self)
     }
 }
-
-// MARK: - UITableView
-extension UITableView: Combinable {}
-public extension Combinable where Self: UITableView {}

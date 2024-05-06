@@ -10,7 +10,7 @@ import UIKit
 
 public extension UIControl {
     
-    struct ControlPublisher<Control: UIControl>: Publisher {
+    struct Publisher<Control: UIControl>: Combine.Publisher {
         public typealias Output = Control
         public typealias Failure = Never
         
