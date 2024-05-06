@@ -91,21 +91,7 @@ final class TableViewManager: NSObject, TableViewDelegate, TableViewDataSource {
         self.contextMenuConfigurationForRowAt = contextMenuConfigurationForRowAt
         self.titleForDeleteConfirmationButtonForRowAt = titleForDeleteConfirmationButtonForRowAt
     }
-    
-    func publishers(
-        onItemSelected: ((AnyPublisher<IndexPath, Never>) -> Void)?,
-        onItemUnselected: ((AnyPublisher<IndexPath, Never>) -> Void)?,
-        onPerformPrimaryAction: ((AnyPublisher<IndexPath, Never>) -> Void)?,
-        onDidEndEditing: ((AnyPublisher<IndexPath?, Never>) -> Void)?,
-        onAccessoryButtonTapped: ((AnyPublisher<IndexPath, Never>) -> Void)?
-    ) {
-        onItemSelected?(selectedItemSubject.eraseToAnyPublisher())
-        onItemUnselected?(deSelectedItemSubject.eraseToAnyPublisher())
-        onPerformPrimaryAction?(performPrimaryActionAt.eraseToAnyPublisher())
-        onDidEndEditing?(didEndEditingSubject.eraseToAnyPublisher())
-        onAccessoryButtonTapped?(accessoryButtonTappedForRowWith.eraseToAnyPublisher())
-    }
-    
+
     let selectedItemSubject = PassthroughSubject<IndexPath, Never>()
     let deSelectedItemSubject = PassthroughSubject<IndexPath, Never>()
     let didEndEditingSubject = PassthroughSubject<IndexPath?, Never>()

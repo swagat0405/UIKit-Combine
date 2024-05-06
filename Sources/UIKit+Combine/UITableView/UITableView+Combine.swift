@@ -72,7 +72,7 @@ public final class UITableView_Combine: UITableView {
     
     // MARK: - Publishers
     
-    public func actions(
+    public func delegateActions(
         heightForRow: ((IndexPath) -> CGFloat)? = nil,
         heightForHeader: ((Int) -> CGFloat)? = nil,
         heightForFooter: ((Int) -> CGFloat)? = nil,
@@ -97,20 +97,20 @@ public final class UITableView_Combine: UITableView {
         manager.contextMenuConfigurationForRowAt = contextMenuConfigurationForRowAt
         manager.titleForDeleteConfirmationButtonForRowAt = titleForDeleteConfirmationButtonForRowAt
     }
-    
-    public func publishers(
-        onItemSelected: ((AnyPublisher<IndexPath, Never>) -> Void)?,
-        onItemUnselected: ((AnyPublisher<IndexPath, Never>) -> Void)?,
-        onPerformPrimaryAction: ((AnyPublisher<IndexPath, Never>) -> Void)?,
-        onDidEndEditing: ((AnyPublisher<IndexPath?, Never>) -> Void)?,
-        onAccessoryButtonTapped: ((AnyPublisher<IndexPath, Never>) -> Void)?
-    ) {
-        manager.publishers(
-            onItemSelected: onItemSelected,
-            onItemUnselected: onItemUnselected,
-            onPerformPrimaryAction: onPerformPrimaryAction,
-            onDidEndEditing: onDidEndEditing,
-            onAccessoryButtonTapped: onAccessoryButtonTapped
-        )
+
+    var onDidSelectItem: AnyPublisher<IndexPath, Never> {
+        manager.selectedItemSubject.eraseToAnyPublisher()
+    }
+    var onDidUnselectItem: AnyPublisher<IndexPath, Never> {
+        manager.deSelectedItemSubject.eraseToAnyPublisher()
+    }
+    var onPerformPrimaryAction: AnyPublisher<IndexPath, Never> {
+        manager.performPrimaryActionAt.eraseToAnyPublisher()
+    }
+    var onDidEndEditing: AnyPublisher<IndexPath?, Never> {
+        manager.didEndEditingSubject.eraseToAnyPublisher()
+    }
+    var onAccessoryButtonTapped: AnyPublisher<IndexPath, Never> {
+        manager.accessoryButtonTappedForRowWith.eraseToAnyPublisher()
     }
 }
