@@ -87,7 +87,7 @@ final class TableViewManager: NSObject, TableViewDelegate, TableViewDataSource {
     
     func build(
         rowsInSection: (@escaping (Int) -> Int),
-        sections: (() -> Int)?,
+        sections: (() -> Int)? = nil,
         cellBuilder: (@escaping (IndexPath) -> UITableViewCell),
         canEditRow: ((IndexPath) -> Bool)? = nil,
         canMoveRow: ((IndexPath) -> Bool)? = nil,
