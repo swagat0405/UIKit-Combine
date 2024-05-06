@@ -10,7 +10,7 @@ import UIKit
 // MARK: - UITableViewDataSource
 extension TableViewManager: UITableViewDataSource {
     public func numberOfSections(in tableView: UITableView) -> Int {
-        guard let sections = sections else { return 0 }
+        guard let sections = sections else { return tableView.style == .plain ? 1 : 0 }
         return sections()
     }
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
