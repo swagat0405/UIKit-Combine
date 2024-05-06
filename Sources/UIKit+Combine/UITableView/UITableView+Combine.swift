@@ -71,77 +71,46 @@ public final class UITableView_Combine: UITableView {
     }
     
     // MARK: - Publishers
-    public var onItemSelected: AnyPublisher<IndexPath, Never> {
-        manager.selectedItemSubject.eraseToAnyPublisher()
-    }
-    public var onItemUnselected: AnyPublisher<IndexPath, Never> {
-        manager.deSelectedItemSubject.eraseToAnyPublisher()
+    
+    public func actions(
+        heightForRow: ((IndexPath) -> CGFloat)? = nil,
+        heightForHeader: ((Int) -> CGFloat)? = nil,
+        heightForFooter: ((Int) -> CGFloat)? = nil,
+        estimatedHeightForRow: ((IndexPath) -> CGFloat)? = nil,
+        editingStyleForRow: ((IndexPath) -> UITableViewCell.EditingStyle)?,
+        viewForFooterInSection: ((Int) -> UIView?)? = nil,
+        viewForHeaderInSection: ((Int) -> UIView?)? = nil,
+        leadingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)? = nil,
+        trailingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)? = nil,
+        contextMenuConfigurationForRowAt: ((IndexPath, CGPoint) -> UIContextMenuConfiguration?)? = nil,
+        titleForDeleteConfirmationButtonForRowAt: ((IndexPath) -> String?)? = nil
+    ) {
+        manager.heightForRow = heightForRow
+        manager.heightForHeader = heightForHeader
+        manager.heightForFooter = heightForFooter
+        manager.estimatedHeightForRow = estimatedHeightForRow
+        manager.editingStyleForRow = editingStyleForRow
+        manager.viewForFooterInSection = viewForFooterInSection
+        manager.viewForHeaderInSection = viewForHeaderInSection
+        manager.leadingSwipeActionsConfigurationForRowAt = leadingSwipeActionsConfigurationForRowAt
+        manager.trailingSwipeActionsConfigurationForRowAt = trailingSwipeActionsConfigurationForRowAt
+        manager.contextMenuConfigurationForRowAt = contextMenuConfigurationForRowAt
+        manager.titleForDeleteConfirmationButtonForRowAt = titleForDeleteConfirmationButtonForRowAt
     }
     
-    public var onPerformPrimaryAction: AnyPublisher<IndexPath, Never> {
-        manager.performPrimaryActionAt.eraseToAnyPublisher()
-    }
-    public var onDidEndEditing: AnyPublisher<IndexPath?, Never> {
-        manager.didEndEditingSubject.eraseToAnyPublisher()
-    }
-    public var onAccessoryButtonTapped: AnyPublisher<IndexPath, Never> {
-        manager.accessoryButtonTappedForRowWith.eraseToAnyPublisher()
-    }
-    
-    // MARK: - Actions
-    public var heightForRow: ((IndexPath) -> CGFloat)? {
-        didSet {
-            manager.heightForRow = heightForRow
-        }
-    }
-    public var heightForFooter: ((Int) -> CGFloat)? {
-        didSet {
-            manager.heightForFooter = heightForFooter
-        }
-    }
-    public var heightForHeader: ((Int) -> CGFloat)? {
-        didSet {
-            manager.heightForHeader = heightForHeader
-        }
-    }
-    public var estimatedHeightForRow: ((IndexPath) -> CGFloat)? {
-        didSet {
-            manager.estimatedHeightForRow = estimatedHeightForRow
-        }
-    }
-    public var editingStyleForRow: ((IndexPath) -> UITableViewCell.EditingStyle)? {
-        didSet {
-            manager.editingStyleForRow = editingStyleForRow
-        }
-    }
-    public var viewForFooterInSection: ((Int) -> UIView?)? {
-        didSet {
-            manager.viewForFooterInSection = viewForFooterInSection
-        }
-    }
-    public var viewForHeaderInSection: ((Int) -> UIView?)? {
-        didSet {
-            manager.viewForHeaderInSection = viewForHeaderInSection
-        }
-    }
-    public var leadingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)? {
-        didSet {
-            manager.leadingSwipeActionsConfigurationForRowAt = leadingSwipeActionsConfigurationForRowAt
-        }
-    }
-    public var trailingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)? {
-        didSet {
-            manager.trailingSwipeActionsConfigurationForRowAt = trailingSwipeActionsConfigurationForRowAt
-        }
-    }
-    public var contextMenuConfigurationForRowAt: ((IndexPath, CGPoint) -> UIContextMenuConfiguration?)? {
-        didSet {
-            manager.contextMenuConfigurationForRowAt = contextMenuConfigurationForRowAt
-        }
-    }
-    public var titleForDeleteConfirmationButtonForRowAt: ((IndexPath) -> String?)? {
-        didSet {
-            manager.titleForDeleteConfirmationButtonForRowAt = titleForDeleteConfirmationButtonForRowAt
-        }
+    public func publishers(
+        onItemSelected: ((AnyPublisher<IndexPath, Never>) -> Void)?,
+        onItemUnselected: ((AnyPublisher<IndexPath, Never>) -> Void)?,
+        onPerformPrimaryAction: ((AnyPublisher<IndexPath, Never>) -> Void)?,
+        onDidEndEditing: ((AnyPublisher<IndexPath?, Never>) -> Void)?,
+        onAccessoryButtonTapped: ((AnyPublisher<IndexPath, Never>) -> Void)?
+    ) {
+        manager.publishers(
+            onItemSelected: onItemSelected,
+            onItemUnselected: onItemUnselected,
+            onPerformPrimaryAction: onPerformPrimaryAction,
+            onDidEndEditing: onDidEndEditing,
+            onAccessoryButtonTapped: onAccessoryButtonTapped
+        )
     }
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 // MARK: - UITableViewDataSource
-extension TableViewManager: UITableViewDataSource {
+extension TableViewManager {
     public func numberOfSections(in tableView: UITableView) -> Int {
         guard let sections = sections else { return tableView.style == .plain ? 1 : 0 }
         return sections()

@@ -65,6 +65,47 @@ final class TableViewManager: NSObject, TableViewDelegate, TableViewDataSource {
     }
     
     // MARK: - Delegate
+    
+    func actions(
+        heightForRow: ((IndexPath) -> CGFloat)? = nil,
+        heightForHeader: ((Int) -> CGFloat)? = nil,
+        heightForFooter: ((Int) -> CGFloat)? = nil,
+        estimatedHeightForRow: ((IndexPath) -> CGFloat)? = nil,
+        editingStyleForRow: ((IndexPath) -> UITableViewCell.EditingStyle)?,
+        viewForFooterInSection: ((Int) -> UIView?)? = nil,
+        viewForHeaderInSection: ((Int) -> UIView?)? = nil,
+        leadingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)? = nil,
+        trailingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)? = nil,
+        contextMenuConfigurationForRowAt: ((IndexPath, CGPoint) -> UIContextMenuConfiguration?)? = nil,
+        titleForDeleteConfirmationButtonForRowAt: ((IndexPath) -> String?)? = nil
+    ) {
+        self.heightForRow = heightForRow
+        self.heightForHeader = heightForHeader
+        self.heightForFooter = heightForFooter
+        self.estimatedHeightForRow = estimatedHeightForRow
+        self.editingStyleForRow = editingStyleForRow
+        self.viewForFooterInSection = viewForFooterInSection
+        self.viewForHeaderInSection = viewForHeaderInSection
+        self.leadingSwipeActionsConfigurationForRowAt = leadingSwipeActionsConfigurationForRowAt
+        self.trailingSwipeActionsConfigurationForRowAt = trailingSwipeActionsConfigurationForRowAt
+        self.contextMenuConfigurationForRowAt = contextMenuConfigurationForRowAt
+        self.titleForDeleteConfirmationButtonForRowAt = titleForDeleteConfirmationButtonForRowAt
+    }
+    
+    func publishers(
+        onItemSelected: ((AnyPublisher<IndexPath, Never>) -> Void)?,
+        onItemUnselected: ((AnyPublisher<IndexPath, Never>) -> Void)?,
+        onPerformPrimaryAction: ((AnyPublisher<IndexPath, Never>) -> Void)?,
+        onDidEndEditing: ((AnyPublisher<IndexPath?, Never>) -> Void)?,
+        onAccessoryButtonTapped: ((AnyPublisher<IndexPath, Never>) -> Void)?
+    ) {
+        onItemSelected?(selectedItemSubject.eraseToAnyPublisher())
+        onItemUnselected?(deSelectedItemSubject.eraseToAnyPublisher())
+        onPerformPrimaryAction?(performPrimaryActionAt.eraseToAnyPublisher())
+        onDidEndEditing?(didEndEditingSubject.eraseToAnyPublisher())
+        onAccessoryButtonTapped?(accessoryButtonTappedForRowWith.eraseToAnyPublisher())
+    }
+    
     let selectedItemSubject = PassthroughSubject<IndexPath, Never>()
     let deSelectedItemSubject = PassthroughSubject<IndexPath, Never>()
     let didEndEditingSubject = PassthroughSubject<IndexPath?, Never>()
