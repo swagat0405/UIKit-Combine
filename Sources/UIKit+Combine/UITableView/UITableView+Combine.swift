@@ -14,7 +14,7 @@ public final class UITableView_Combine: UITableView {
     private lazy var manager = TableViewManager()
     
     // MARK: - Initialize
-    override init(frame: CGRect, style: UITableView.Style) {
+    public override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
         self.dataSource = manager
         self.delegate = manager
