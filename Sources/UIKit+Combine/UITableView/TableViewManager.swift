@@ -87,25 +87,25 @@ final class TableViewManager: NSObject, TableViewDelegate, TableViewDataSource {
     
     func build(
         rowsInSection: (@escaping (Int) -> Int),
-        sections: (() -> Int)? = nil,
+        sections: (() -> Int)?,
         cellBuilder: (@escaping (IndexPath) -> UITableViewCell),
-        canEditRow: ((IndexPath) -> Bool)? = nil,
-        canMoveRow: ((IndexPath) -> Bool)? = nil,
-        moveRow: ((IndexPath, IndexPath) -> Void)? = nil,
-        commitEditingStyle: ((UITableViewCell.EditingStyle, IndexPath) -> Void)? = nil,
-        footerTitle: ((Int) -> String?)? = nil,
-        headerTitle: ((Int) -> String?)? = nil,
-        heightForRow: ((IndexPath) -> CGFloat)? = nil,
-        heightForHeader: ((Int) -> CGFloat)? = nil,
-        heightForFooter: ((Int) -> CGFloat)? = nil,
-        estimatedHeightForRow: ((IndexPath) -> CGFloat)? = nil,
-        editingStyleForRow: ((IndexPath) -> UITableViewCell.EditingStyle)? = nil,
-        viewForFooterInSection: ((Int) -> UIView?)? = nil,
-        viewForHeaderInSection: ((Int) -> UIView?)? = nil,
-        leadingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)? = nil,
-        trailingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)? = nil,
-        contextMenuConfigurationForRowAt: ((IndexPath, CGPoint) -> UIContextMenuConfiguration?)? = nil,
-        titleForDeleteConfirmationButtonForRowAt: ((IndexPath) -> String?)? = nil
+        canEditRow: ((IndexPath) -> Bool)?,
+        canMoveRow: ((IndexPath) -> Bool)?,
+        moveRow: ((IndexPath, IndexPath) -> Void)?,
+        commitEditingStyle: ((UITableViewCell.EditingStyle, IndexPath) -> Void)?,
+        footerTitle: ((Int) -> String?)?,
+        headerTitle: ((Int) -> String?)?,
+        heightForRow: ((IndexPath) -> CGFloat)?,
+        heightForHeader: ((Int) -> CGFloat)?,
+        heightForFooter: ((Int) -> CGFloat)?,
+        estimatedHeightForRow: ((IndexPath) -> CGFloat)?,
+        editingStyleForRow: ((IndexPath) -> UITableViewCell.EditingStyle)?,
+        viewForFooterInSection: ((Int) -> UIView?)?,
+        viewForHeaderInSection: ((Int) -> UIView?)?,
+        leadingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)?,
+        trailingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)?,
+        contextMenuConfigurationForRowAt: ((IndexPath, CGPoint) -> UIContextMenuConfiguration?)?,
+        titleForDeleteConfirmationButtonForRowAt: ((IndexPath) -> String?)?
     ) {
         self.rowsInSection = rowsInSection
         self.sections = sections

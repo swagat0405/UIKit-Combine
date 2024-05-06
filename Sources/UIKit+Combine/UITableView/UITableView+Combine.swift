@@ -26,7 +26,7 @@ public final class UITableView_Combine: UITableView {
     
     public func build(
         rowsInSection: (@escaping (Int) -> Int),
-        sections: (() -> Int)?,
+        sections: (() -> Int)? = nil,
         cellBuilder: (@escaping (IndexPath) -> UITableViewCell),
         canEditRow: ((IndexPath) -> Bool)? = nil,
         canMoveRow: ((IndexPath) -> Bool)? = nil,
