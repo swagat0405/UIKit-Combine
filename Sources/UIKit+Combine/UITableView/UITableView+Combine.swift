@@ -24,7 +24,7 @@ public final class UITableView_Combine: UITableView {
         super.init(coder: coder)
     }
     
-    func build(
+    public func build(
         rowsInSection: (@escaping (Int) -> Int),
         sections: (() -> Int)?,
         cellBuilder: (@escaping (IndexPath) -> UITableViewCell),
@@ -71,75 +71,75 @@ public final class UITableView_Combine: UITableView {
     }
     
     // MARK: - Publishers
-    var onItemSelected: AnyPublisher<IndexPath, Never> {
+    public var onItemSelected: AnyPublisher<IndexPath, Never> {
         manager.selectedItemSubject.eraseToAnyPublisher()
     }
-    var onItemUnselected: AnyPublisher<IndexPath, Never> {
+    public var onItemUnselected: AnyPublisher<IndexPath, Never> {
         manager.deSelectedItemSubject.eraseToAnyPublisher()
     }
     
-    var onPerformPrimaryAction: AnyPublisher<IndexPath, Never> {
+    public var onPerformPrimaryAction: AnyPublisher<IndexPath, Never> {
         manager.performPrimaryActionAt.eraseToAnyPublisher()
     }
-    var onDidEndEditing: AnyPublisher<IndexPath?, Never> {
+    public var onDidEndEditing: AnyPublisher<IndexPath?, Never> {
         manager.didEndEditingSubject.eraseToAnyPublisher()
     }
-    var onAccessoryButtonTapped: AnyPublisher<IndexPath, Never> {
+    public var onAccessoryButtonTapped: AnyPublisher<IndexPath, Never> {
         manager.accessoryButtonTappedForRowWith.eraseToAnyPublisher()
     }
     
     // MARK: - Actions
-    var heightForRow: ((IndexPath) -> CGFloat)? {
+    public var heightForRow: ((IndexPath) -> CGFloat)? {
         didSet {
             manager.heightForRow = heightForRow
         }
     }
-    var heightForFooter: ((Int) -> CGFloat)? {
+    public var heightForFooter: ((Int) -> CGFloat)? {
         didSet {
             manager.heightForFooter = heightForFooter
         }
     }
-    var heightForHeader: ((Int) -> CGFloat)? {
+    public var heightForHeader: ((Int) -> CGFloat)? {
         didSet {
             manager.heightForHeader = heightForHeader
         }
     }
-    var estimatedHeightForRow: ((IndexPath) -> CGFloat)? {
+    public var estimatedHeightForRow: ((IndexPath) -> CGFloat)? {
         didSet {
             manager.estimatedHeightForRow = estimatedHeightForRow
         }
     }
-    var editingStyleForRow: ((IndexPath) -> UITableViewCell.EditingStyle)? {
+    public var editingStyleForRow: ((IndexPath) -> UITableViewCell.EditingStyle)? {
         didSet {
             manager.editingStyleForRow = editingStyleForRow
         }
     }
-    var viewForFooterInSection: ((Int) -> UIView?)? {
+    public var viewForFooterInSection: ((Int) -> UIView?)? {
         didSet {
             manager.viewForFooterInSection = viewForFooterInSection
         }
     }
-    var viewForHeaderInSection: ((Int) -> UIView?)? {
+    public var viewForHeaderInSection: ((Int) -> UIView?)? {
         didSet {
             manager.viewForHeaderInSection = viewForHeaderInSection
         }
     }
-    var leadingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)? {
+    public var leadingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)? {
         didSet {
             manager.leadingSwipeActionsConfigurationForRowAt = leadingSwipeActionsConfigurationForRowAt
         }
     }
-    var trailingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)? {
+    public var trailingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)? {
         didSet {
             manager.trailingSwipeActionsConfigurationForRowAt = trailingSwipeActionsConfigurationForRowAt
         }
     }
-    var contextMenuConfigurationForRowAt: ((IndexPath, CGPoint) -> UIContextMenuConfiguration?)? {
+    public var contextMenuConfigurationForRowAt: ((IndexPath, CGPoint) -> UIContextMenuConfiguration?)? {
         didSet {
             manager.contextMenuConfigurationForRowAt = contextMenuConfigurationForRowAt
         }
     }
-    var titleForDeleteConfirmationButtonForRowAt: ((IndexPath) -> String?)? {
+    public var titleForDeleteConfirmationButtonForRowAt: ((IndexPath) -> String?)? {
         didSet {
             manager.titleForDeleteConfirmationButtonForRowAt = titleForDeleteConfirmationButtonForRowAt
         }
