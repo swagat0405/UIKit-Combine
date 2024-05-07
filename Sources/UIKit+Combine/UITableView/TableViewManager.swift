@@ -41,7 +41,7 @@ public final class TableViewManager: NSObject,TableViewDataSource, TableViewDele
     
     
     // MARK: - Init
-    init(withTableView tableView: UITableView) {
+    public init(withTableView tableView: UITableView) {
         super.init()
         tableView.dataSource = self
         tableView.delegate = self

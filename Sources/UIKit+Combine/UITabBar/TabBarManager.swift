@@ -18,7 +18,7 @@ public final class TabBarManager: NSObject, TabBarDelegate {
     var willEndCustomizingTabSubject = PassthroughSubject<([UITabBarItem], changed: Bool), Never>()
     
     // MARK: - Init
-    init(withTabBar tabBar: UITabBar) {
+    public init(withTabBar tabBar: UITabBar) {
         super.init()
         tabBar.delegate = self
     }

@@ -59,7 +59,7 @@ public final class CollectionViewManager: NSObject, CollectionViewDataSource, Co
     var willEndContextMenuInteractionSubject = PassthroughSubject<(UIContextMenuConfiguration, (any UIContextMenuInteractionAnimating)?), Never>()
 
     // MARK: - Init
-    init(withCollectionView collectionView: UICollectionView) {
+    public init(withCollectionView collectionView: UICollectionView) {
         super.init()
         collectionView.dataSource = self
         collectionView.delegate = self
