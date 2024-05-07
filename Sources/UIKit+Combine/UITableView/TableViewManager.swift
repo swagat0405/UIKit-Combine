@@ -10,16 +10,9 @@ import UIKit
 
 final class TableViewManager: NSObject {
     
+    // MARK: - Properties
     let tableView: UITableView
-    init(withTableViewStyle style: UITableView.Style) {
-        self.tableView = UITableView(frame: .zero, style: style)
-        super.init()
-
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
-    }
     
-    // MARK: - DataSource
     var sections: (() -> Int)?
     var rowsInSection: ((Section) -> Int)?
     var cellBuilder: ((IndexPath) -> UITableViewCell)?
@@ -30,78 +23,6 @@ final class TableViewManager: NSObject {
     var footerTitle: ((Int) -> String?)?
     var headerTitle: ((Int) -> String?)?
     
-    func build(
-        sections: (() -> Int)?,
-        rowsInSection: (@escaping (Section) -> Int),
-        cellBuilder: (@escaping (IndexPath) -> UITableViewCell),
-        canEditRow: ((IndexPath) -> Bool)?,
-        canMoveRow: ((IndexPath) -> Bool)?,
-        moveRow: ((IndexPath, IndexPath) -> Void)?,
-        commitEditingStyle: ((UITableViewCell.EditingStyle, IndexPath) -> Void)?,
-        footerTitle: ((Int) -> String?)?,
-        headerTitle: ((Int) -> String?)?,
-        heightForRow: ((IndexPath) -> CGFloat)?,
-        heightForHeader: ((Int) -> CGFloat)?,
-        heightForFooter: ((Int) -> CGFloat)?,
-        estimatedHeightForRow: ((IndexPath) -> CGFloat)?,
-        editingStyleForRow: ((IndexPath) -> UITableViewCell.EditingStyle)?,
-        viewForFooterInSection: ((Int) -> UIView?)?,
-        viewForHeaderInSection: ((Int) -> UIView?)?,
-        leadingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)?,
-        trailingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)?,
-        contextMenuConfigurationForRowAt: ((IndexPath, CGPoint) -> UIContextMenuConfiguration?)?,
-        titleForDeleteConfirmationButtonForRowAt: ((IndexPath) -> String?)?
-    ) {
-        self.rowsInSection = rowsInSection
-        self.sections = sections
-        self.cellBuilder = cellBuilder
-        self.canEditRow = canEditRow
-        self.canMoveRow = canMoveRow
-        self.moveRow = moveRow
-        self.commitEditingStyle = commitEditingStyle
-        self.footerTitle = footerTitle
-        self.headerTitle = headerTitle
-        self.heightForRow = heightForRow
-        self.heightForHeader = heightForHeader
-        self.heightForFooter = heightForFooter
-        self.estimatedHeightForRow = estimatedHeightForRow
-        self.editingStyleForRow = editingStyleForRow
-        self.viewForFooterInSection = viewForFooterInSection
-        self.viewForHeaderInSection = viewForHeaderInSection
-        self.leadingSwipeActionsConfigurationForRowAt = leadingSwipeActionsConfigurationForRowAt
-        self.trailingSwipeActionsConfigurationForRowAt = trailingSwipeActionsConfigurationForRowAt
-        self.contextMenuConfigurationForRowAt = contextMenuConfigurationForRowAt
-        self.titleForDeleteConfirmationButtonForRowAt = titleForDeleteConfirmationButtonForRowAt
-    }
-    
-    // MARK: - Delegate
-    
-    func actions(
-        heightForRow: ((IndexPath) -> CGFloat)? = nil,
-        heightForHeader: ((Int) -> CGFloat)? = nil,
-        heightForFooter: ((Int) -> CGFloat)? = nil,
-        estimatedHeightForRow: ((IndexPath) -> CGFloat)? = nil,
-        editingStyleForRow: ((IndexPath) -> UITableViewCell.EditingStyle)?,
-        viewForFooterInSection: ((Int) -> UIView?)? = nil,
-        viewForHeaderInSection: ((Int) -> UIView?)? = nil,
-        leadingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)? = nil,
-        trailingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)? = nil,
-        contextMenuConfigurationForRowAt: ((IndexPath, CGPoint) -> UIContextMenuConfiguration?)? = nil,
-        titleForDeleteConfirmationButtonForRowAt: ((IndexPath) -> String?)? = nil
-    ) {
-        self.heightForRow = heightForRow
-        self.heightForHeader = heightForHeader
-        self.heightForFooter = heightForFooter
-        self.estimatedHeightForRow = estimatedHeightForRow
-        self.editingStyleForRow = editingStyleForRow
-        self.viewForFooterInSection = viewForFooterInSection
-        self.viewForHeaderInSection = viewForHeaderInSection
-        self.leadingSwipeActionsConfigurationForRowAt = leadingSwipeActionsConfigurationForRowAt
-        self.trailingSwipeActionsConfigurationForRowAt = trailingSwipeActionsConfigurationForRowAt
-        self.contextMenuConfigurationForRowAt = contextMenuConfigurationForRowAt
-        self.titleForDeleteConfirmationButtonForRowAt = titleForDeleteConfirmationButtonForRowAt
-    }
-
     let selectedItemSubject = PassthroughSubject<IndexPath, Never>()
     let deSelectedItemSubject = PassthroughSubject<IndexPath, Never>()
     let didEndEditingSubject = PassthroughSubject<IndexPath?, Never>()
@@ -120,6 +41,16 @@ final class TableViewManager: NSObject {
     var contextMenuConfigurationForRowAt: ((IndexPath, CGPoint) -> UIContextMenuConfiguration?)?
     var titleForDeleteConfirmationButtonForRowAt: ((IndexPath) -> String?)?
     
+    
+    // MARK: - Init
+    init(withTableViewStyle style: UITableView.Style) {
+        self.tableView = UITableView(frame: .zero, style: style)
+        super.init()
+
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+    }
+
     // MARK: - De-init
     deinit {
         selectedItemSubject.send(completion: .finished)

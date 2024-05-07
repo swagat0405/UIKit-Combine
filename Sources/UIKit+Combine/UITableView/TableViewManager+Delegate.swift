@@ -6,9 +6,59 @@
 //
 
 import UIKit
+import Combine
 
 // MARK: - Delegate
 extension TableViewManager: TableViewDelegate {
+    func actions(
+        heightForRow: ((IndexPath) -> CGFloat)? = nil,
+        heightForHeader: ((Int) -> CGFloat)? = nil,
+        heightForFooter: ((Int) -> CGFloat)? = nil,
+        estimatedHeightForRow: ((IndexPath) -> CGFloat)? = nil,
+        editingStyleForRow: ((IndexPath) -> UITableViewCell.EditingStyle)?,
+        viewForFooterInSection: ((Int) -> UIView?)? = nil,
+        viewForHeaderInSection: ((Int) -> UIView?)? = nil,
+        leadingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)? = nil,
+        trailingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)? = nil,
+        contextMenuConfigurationForRowAt: ((IndexPath, CGPoint) -> UIContextMenuConfiguration?)? = nil,
+        titleForDeleteConfirmationButtonForRowAt: ((IndexPath) -> String?)? = nil
+    ) {
+        self.heightForRow = heightForRow
+        self.heightForHeader = heightForHeader
+        self.heightForFooter = heightForFooter
+        self.estimatedHeightForRow = estimatedHeightForRow
+        self.editingStyleForRow = editingStyleForRow
+        self.viewForFooterInSection = viewForFooterInSection
+        self.viewForHeaderInSection = viewForHeaderInSection
+        self.leadingSwipeActionsConfigurationForRowAt = leadingSwipeActionsConfigurationForRowAt
+        self.trailingSwipeActionsConfigurationForRowAt = trailingSwipeActionsConfigurationForRowAt
+        self.contextMenuConfigurationForRowAt = contextMenuConfigurationForRowAt
+        self.titleForDeleteConfirmationButtonForRowAt = titleForDeleteConfirmationButtonForRowAt
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension TableViewManager {
+    var onDidSelectItem: AnyPublisher<IndexPath, Never> {
+        selectedItemSubject.eraseToAnyPublisher()
+    }
+    
+    var onDidDeSelectItem: AnyPublisher<IndexPath, Never> {
+        deSelectedItemSubject.eraseToAnyPublisher()
+    }
+    
+    var onDidEndEditing: AnyPublisher<IndexPath?, Never> {
+        didEndEditingSubject.eraseToAnyPublisher()
+    }
+    
+    var onPerformPrimaryAction: AnyPublisher<IndexPath, Never> {
+        performPrimaryActionAt.eraseToAnyPublisher()
+    }
+    
+    var onAccessoryButtonTappedForRowWith: AnyPublisher<IndexPath, Never> {
+        accessoryButtonTappedForRowWith.eraseToAnyPublisher()
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedItemSubject.send(indexPath)
     }
