@@ -15,7 +15,7 @@ public extension TableViewManager {
         heightForHeader: ((Section) -> CGFloat)? = nil,
         heightForFooter: ((Section) -> CGFloat)? = nil,
         estimatedHeightForRow: ((IndexPath) -> CGFloat)? = nil,
-        editingStyleForRow: ((IndexPath) -> UITableViewCell.EditingStyle)?,
+        editingStyleForRow: ((IndexPath) -> UITableViewCell.EditingStyle)? = nil,
         viewForFooterInSection: ((Section) -> UIView?)? = nil,
         viewForHeaderInSection: ((Section) -> UIView?)? = nil,
         leadingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)? = nil,
