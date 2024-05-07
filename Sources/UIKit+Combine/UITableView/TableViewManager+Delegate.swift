@@ -12,12 +12,12 @@ import Combine
 public extension TableViewManager {
     func actions(
         heightForRow: ((IndexPath) -> CGFloat)? = nil,
-        heightForHeader: ((Int) -> CGFloat)? = nil,
-        heightForFooter: ((Int) -> CGFloat)? = nil,
+        heightForHeader: ((Section) -> CGFloat)? = nil,
+        heightForFooter: ((Section) -> CGFloat)? = nil,
         estimatedHeightForRow: ((IndexPath) -> CGFloat)? = nil,
         editingStyleForRow: ((IndexPath) -> UITableViewCell.EditingStyle)?,
-        viewForFooterInSection: ((Int) -> UIView?)? = nil,
-        viewForHeaderInSection: ((Int) -> UIView?)? = nil,
+        viewForFooterInSection: ((Section) -> UIView?)? = nil,
+        viewForHeaderInSection: ((Section) -> UIView?)? = nil,
         leadingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)? = nil,
         trailingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)? = nil,
         contextMenuConfigurationForRowAt: ((IndexPath, CGPoint) -> UIContextMenuConfiguration?)? = nil,

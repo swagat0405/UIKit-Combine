@@ -17,12 +17,12 @@ public protocol TableViewDelegate: UITableViewDelegate {
 
     func actions(
         heightForRow: ((IndexPath) -> CGFloat)?,
-        heightForHeader: ((Int) -> CGFloat)?,
-        heightForFooter: ((Int) -> CGFloat)?,
+        heightForHeader: ((Section) -> CGFloat)?,
+        heightForFooter: ((Section) -> CGFloat)?,
         estimatedHeightForRow: ((IndexPath) -> CGFloat)?,
         editingStyleForRow: ((IndexPath) -> UITableViewCell.EditingStyle)?,
-        viewForFooterInSection: ((Int) -> UIView?)?,
-        viewForHeaderInSection: ((Int) -> UIView?)?,
+        viewForFooterInSection: ((Section) -> UIView?)?,
+        viewForHeaderInSection: ((Section) -> UIView?)?,
         leadingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)?,
         trailingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)?,
         contextMenuConfigurationForRowAt: ((IndexPath, CGPoint) -> UIContextMenuConfiguration?)?,

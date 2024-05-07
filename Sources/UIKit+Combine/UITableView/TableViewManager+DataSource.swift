@@ -10,26 +10,26 @@ import UIKit
 // MARK: - DataSource
 public extension TableViewManager {
     func build(
-        sections: (() -> Int)?,
+        sections: (() -> Int)? = nil,
         rowsInSection: (@escaping (Section) -> Int),
         cellBuilder: (@escaping (IndexPath) -> UITableViewCell),
-        canEditRow: ((IndexPath) -> Bool)?,
-        canMoveRow: ((IndexPath) -> Bool)?,
-        moveRow: ((IndexPath, IndexPath) -> Void)?,
-        commitEditingStyle: ((UITableViewCell.EditingStyle, IndexPath) -> Void)?,
-        footerTitle: ((Int) -> String?)?,
-        headerTitle: ((Int) -> String?)?,
-        heightForRow: ((IndexPath) -> CGFloat)?,
-        heightForHeader: ((Int) -> CGFloat)?,
-        heightForFooter: ((Int) -> CGFloat)?,
-        estimatedHeightForRow: ((IndexPath) -> CGFloat)?,
-        editingStyleForRow: ((IndexPath) -> UITableViewCell.EditingStyle)?,
-        viewForFooterInSection: ((Int) -> UIView?)?,
-        viewForHeaderInSection: ((Int) -> UIView?)?,
-        leadingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)?,
-        trailingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)?,
-        contextMenuConfigurationForRowAt: ((IndexPath, CGPoint) -> UIContextMenuConfiguration?)?,
-        titleForDeleteConfirmationButtonForRowAt: ((IndexPath) -> String?)?
+        canEditRow: ((IndexPath) -> Bool)? = nil,
+        canMoveRow: ((IndexPath) -> Bool)? = nil,
+        moveRow: ((IndexPath, IndexPath) -> Void)? = nil,
+        commitEditingStyle: ((UITableViewCell.EditingStyle, IndexPath) -> Void)? = nil,
+        footerTitle: ((Section) -> String?)? = nil,
+        headerTitle: ((Section) -> String?)? = nil ,
+        heightForRow: ((IndexPath) -> CGFloat)? = nil,
+        heightForHeader: ((Section) -> CGFloat)? = nil,
+        heightForFooter: ((Section) -> CGFloat)? = nil,
+        estimatedHeightForRow: ((IndexPath) -> CGFloat)? = nil,
+        editingStyleForRow: ((IndexPath) -> UITableViewCell.EditingStyle)? = nil,
+        viewForFooterInSection: ((Section) -> UIView?)? = nil,
+        viewForHeaderInSection: ((Section) -> UIView?)? = nil,
+        leadingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)? = nil,
+        trailingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)? = nil,
+        contextMenuConfigurationForRowAt: ((IndexPath, CGPoint) -> UIContextMenuConfiguration?)? = nil,
+        titleForDeleteConfirmationButtonForRowAt: ((IndexPath) -> String?)? = nil
     ) {
         self.rowsInSection = rowsInSection
         self.sections = sections
