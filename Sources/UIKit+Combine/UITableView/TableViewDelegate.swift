@@ -30,18 +30,18 @@ protocol TableViewDelegate: UITableViewDelegate {
     )
 }
 
-extension TableViewDelegate {
-    func actions(
-        heightForRow: ((IndexPath) -> CGFloat)? = nil,
-        heightForHeader: ((Int) -> CGFloat)? = nil,
-        heightForFooter: ((Int) -> CGFloat)? = nil,
-        estimatedHeightForRow: ((IndexPath) -> CGFloat)? = nil,
-        editingStyleForRow: ((IndexPath) -> UITableViewCell.EditingStyle)? = nil,
-        viewForFooterInSection: ((Int) -> UIView?)? = nil,
-        viewForHeaderInSection: ((Int) -> UIView?)? = nil,
-        leadingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)? = nil,
-        trailingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)? = nil,
-        contextMenuConfigurationForRowAt: ((IndexPath, CGPoint) -> UIContextMenuConfiguration?)? = nil,
-        titleForDeleteConfirmationButtonForRowAt: ((IndexPath) -> String?)? = nil
-    ) {}
-}
+//extension TableViewDelegate {
+//    func actions(
+//        heightForRow: ((IndexPath) -> CGFloat)? = nil,
+//        heightForHeader: ((Int) -> CGFloat)? = nil,
+//        heightForFooter: ((Int) -> CGFloat)? = nil,
+//        estimatedHeightForRow: ((IndexPath) -> CGFloat)? = nil,
+//        editingStyleForRow: ((IndexPath) -> UITableViewCell.EditingStyle)? = nil,
+//        viewForFooterInSection: ((Int) -> UIView?)? = nil,
+//        viewForHeaderInSection: ((Int) -> UIView?)? = nil,
+//        leadingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)? = nil,
+//        trailingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration?)? = nil,
+//        contextMenuConfigurationForRowAt: ((IndexPath, CGPoint) -> UIContextMenuConfiguration?)? = nil,
+//        titleForDeleteConfirmationButtonForRowAt: ((IndexPath) -> String?)? = nil
+//    ) {}
+//}

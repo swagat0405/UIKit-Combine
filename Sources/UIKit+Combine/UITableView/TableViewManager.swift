@@ -8,7 +8,17 @@
 import Combine
 import UIKit
 
-final class TableViewManager: NSObject, TableViewDelegate, TableViewDataSource {
+final class TableViewManager: NSObject {
+    
+    let tableView: UITableView
+    init(withTableViewStyle style: UITableView.Style) {
+        self.tableView = UITableView(frame: .zero, style: style)
+        super.init()
+
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+    }
+    
     // MARK: - DataSource
     var sections: (() -> Int)?
     var rowsInSection: ((Section) -> Int)?

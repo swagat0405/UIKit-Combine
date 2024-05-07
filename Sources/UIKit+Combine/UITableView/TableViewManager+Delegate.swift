@@ -8,7 +8,7 @@
 import UIKit
 
 // MARK: - Delegate
-extension TableViewManager {
+extension TableViewManager: TableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedItemSubject.send(indexPath)
     }
