@@ -9,7 +9,7 @@ import Combine
 import UIKit
 
 // MARK: - TabBarDelegate Protocol
-protocol TabBarDelegate: UITabBarDelegate {
+public protocol TabBarDelegate: UITabBarDelegate {
     var onDidSelectItem: AnyPublisher<UITabBarItem, Never> { get }
     var onDidBeginCustomizing: AnyPublisher<[UITabBarItem], Never> { get }
     var onWillBeginCustomizing: AnyPublisher<[UITabBarItem], Never> { get }

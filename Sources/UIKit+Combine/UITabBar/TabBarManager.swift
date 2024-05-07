@@ -8,6 +8,10 @@
 import UIKit
 import Combine
 
+public protocol TabBarManaged: TabBarDelegate {
+    func manage(tabBar: UITabBar)
+}
+
 // MARK: - TabBarManager
 final class TabBarManager: NSObject {
     // MARK: - Properties
@@ -18,8 +22,7 @@ final class TabBarManager: NSObject {
     var willEndCustomizingTabSubject = PassthroughSubject<([UITabBarItem], changed: Bool), Never>()
     
     // MARK: - Init
-    init(withTabBar tabBar: UITabBar) {
-        super.init()
+    func manage(tabBar: UITabBar) {
         tabBar.delegate = self
     }
     

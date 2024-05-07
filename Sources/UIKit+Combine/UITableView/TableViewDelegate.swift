@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-protocol TableViewDelegate: UITableViewDelegate {
+public protocol TableViewDelegate: UITableViewDelegate {
     var onDidSelectItem: AnyPublisher<IndexPath, Never> { get }
     var onDidDeSelectItem: AnyPublisher<IndexPath, Never> { get }
     var onDidEndEditing: AnyPublisher<IndexPath?, Never> { get }

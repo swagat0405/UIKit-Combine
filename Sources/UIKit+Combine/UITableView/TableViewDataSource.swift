@@ -10,7 +10,7 @@ import UIKit
 // MARK: - typealias
 public typealias Section = Int
 
-protocol TableViewDataSource: UITableViewDataSource {
+public protocol TableViewDataSource: UITableViewDataSource {
     func build(
         sections: (() -> Int)?,
         rowsInSection: (@escaping (Section) -> Int),

@@ -8,8 +8,11 @@
 import Combine
 import UIKit
 
-final class TableViewManager: NSObject {
-    
+public protocol TableViewManaged: TableViewDelegate, TableViewDataSource {
+    func manage(tableView: UITableView)
+}
+
+final class TableViewManager: NSObject, TableViewManaged {
     // MARK: - Properties
     var sections: (() -> Int)?
     var rowsInSection: ((Section) -> Int)?
@@ -41,8 +44,7 @@ final class TableViewManager: NSObject {
     
     
     // MARK: - Init
-    init(withTableView tableView: UITableView) {
-        super.init()
+    func manage(tableView: UITableView) {
         tableView.dataSource = self
         tableView.delegate = self
     }

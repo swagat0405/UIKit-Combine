@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 // MARK: - CollectionViewDelegate
-protocol CollectionViewDelegate: UICollectionViewDelegate {
+public protocol CollectionViewDelegate: UICollectionViewDelegate {
     // MARK: - Actions
     func actions(
         shouldHighlightItem: ((IndexPath) -> Bool)?,
