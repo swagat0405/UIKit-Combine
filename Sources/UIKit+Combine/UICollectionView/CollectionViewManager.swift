@@ -8,11 +8,7 @@
 import UIKit
 import Combine
 
-public protocol CollectionViewManaged: CollectionViewDelegate, CollectionViewDataSource {
-    func manage(collectionView: UICollectionView)
-}
-
-final class CollectionViewManager: NSObject, CollectionViewManaged {
+final class CollectionViewManager: NSObject {
     // MARK: - Properties
     // MARK: - Data Source Properties
     var sections: (() -> Int)?
@@ -63,7 +59,8 @@ final class CollectionViewManager: NSObject, CollectionViewManaged {
     var willEndContextMenuInteractionSubject = PassthroughSubject<(UIContextMenuConfiguration, (any UIContextMenuInteractionAnimating)?), Never>()
 
     // MARK: - Init
-    func manage(collectionView: UICollectionView) {
+    init(withCollectionView collectionView: UICollectionView) {
+        super.init()
         collectionView.dataSource = self
         collectionView.delegate = self
     }
