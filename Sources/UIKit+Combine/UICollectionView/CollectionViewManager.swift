@@ -9,6 +9,7 @@ import UIKit
 import Combine
 
 final class CollectionViewManager: NSObject {
+    // MARK: - Properties
     
     // MARK: - Data Source Properties
     var sections: (() -> Int)?
@@ -42,7 +43,7 @@ final class CollectionViewManager: NSObject {
     var previewForHighlightingContextMenu: ((UIContextMenuConfiguration) -> UITargetedPreview?)?
     var previewForDismissingContextMenu: ((UIContextMenuConfiguration) -> UITargetedPreview?)?
     
-     
+    // MARK: - Subject Properties
     var didHighlightItemSubject = PassthroughSubject<IndexPath, Never>()
     var didUnHighlightItemSubject = PassthroughSubject<IndexPath, Never>()
     var didSelectItemSubject = PassthroughSubject<IndexPath, Never>()
@@ -58,4 +59,28 @@ final class CollectionViewManager: NSObject {
     var willDisplayContextMenuSubject = PassthroughSubject<(UIContextMenuConfiguration, (any UIContextMenuInteractionAnimating)?), Never>()
     var willEndContextMenuInteractionSubject = PassthroughSubject<(UIContextMenuConfiguration, (any UIContextMenuInteractionAnimating)?), Never>()
 
+    // MARK: - Init
+    init(withCollectionView collectionView: UICollectionView) {
+        super.init()
+        collectionView.dataSource = self
+        collectionView.delegate = self
+    }
+    
+    // MARK: - deInit
+    deinit {
+        didHighlightItemSubject.send(completion: .finished)
+        didUnHighlightItemSubject.send(completion: .finished)
+        didSelectItemSubject.send(completion: .finished)
+        didDeSelectItemSubject.send(completion: .finished)
+        performPrimaryActionSubject.send(completion: .finished)
+        willDisplayCellSubject.send(completion: .finished)
+        didEndDisplayingCellSubject.send(completion: .finished)
+        willDisplaySupplementaryViewSubject.send(completion: .finished)
+        didEndDisplayingSupplementaryViewSubject.send(completion: .finished)
+        performActionSubject.send(completion: .finished)
+        didUpdateFocusSubject.send(completion: .finished)
+        willPerformPreviewActionForMenuSubject.send(completion: .finished)
+        willDisplayContextMenuSubject.send(completion: .finished)
+        willEndContextMenuInteractionSubject.send(completion: .finished)
+    }
 }

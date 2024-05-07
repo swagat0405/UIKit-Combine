@@ -8,8 +8,8 @@
 import UIKit
 import Combine
 
-extension CollectionViewManager: UICollectionViewDelegate {
-    
+// MARK: - CollectionViewManager+CollectionViewDelegate
+extension CollectionViewManager: CollectionViewDelegate {
     func actions(
         shouldHighlightItem: ((IndexPath) -> Bool)?,
         shouldSelectItem: ((IndexPath) -> Bool)?,
@@ -54,6 +54,52 @@ extension CollectionViewManager: UICollectionViewDelegate {
         self.previewForDismissingContextMenu = previewForDismissingContextMenu
     }
     
+    var onDidHighlightItemSubject: AnyPublisher<IndexPath, Never> {
+        didHighlightItemSubject.eraseToAnyPublisher()
+    }
+    var onDidUnHighlightItemSubject: AnyPublisher<IndexPath, Never> {
+        didUnHighlightItemSubject.eraseToAnyPublisher()
+    }
+    var onDidSelectItemSubject: AnyPublisher<IndexPath, Never> {
+        didSelectItemSubject.eraseToAnyPublisher()
+    }
+    var onDidDeSelectItemSubject: AnyPublisher<IndexPath, Never> {
+        didDeSelectItemSubject.eraseToAnyPublisher()
+    }
+    var onPerformPrimaryActionSubject: AnyPublisher<IndexPath, Never> {
+        performPrimaryActionSubject.eraseToAnyPublisher()
+    }
+    var onWillDisplayCellSubject: AnyPublisher<(UICollectionViewCell, IndexPath), Never> {
+        willDisplayCellSubject.eraseToAnyPublisher()
+    }
+    var onDidEndDisplayingCellSubject: AnyPublisher<(UICollectionViewCell, IndexPath), Never> {
+        didEndDisplayingCellSubject.eraseToAnyPublisher()
+    }
+    var onWillDisplaySupplementaryViewSubject: AnyPublisher<(UICollectionReusableView, String, IndexPath), Never> {
+        willDisplaySupplementaryViewSubject.eraseToAnyPublisher()
+    }
+    var onDidEndDisplayingSupplementaryViewSubject: AnyPublisher<(UICollectionReusableView, String, IndexPath), Never> {
+        didEndDisplayingSupplementaryViewSubject.eraseToAnyPublisher()
+    }
+    var onPerformActionSubject: AnyPublisher<(Selector, IndexPath, Any?), Never> {
+        performActionSubject.eraseToAnyPublisher()
+    }
+    var onDidUpdateFocusSubject: AnyPublisher<(UICollectionViewFocusUpdateContext, UIFocusAnimationCoordinator), Never> {
+        didUpdateFocusSubject.eraseToAnyPublisher()
+    }
+    var onWillPerformPreviewActionForMenuSubject: AnyPublisher<(UIContextMenuConfiguration, (any UIContextMenuInteractionCommitAnimating)), Never> {
+        willPerformPreviewActionForMenuSubject.eraseToAnyPublisher()
+    }
+    var onWillDisplayContextMenuSubject: AnyPublisher<(UIContextMenuConfiguration, (any UIContextMenuInteractionAnimating)?), Never> {
+        willDisplayContextMenuSubject.eraseToAnyPublisher()
+    }
+    var onWillEndContextMenuInteractionSubject: AnyPublisher<(UIContextMenuConfiguration, (any UIContextMenuInteractionAnimating)?), Never> {
+        willEndContextMenuInteractionSubject.eraseToAnyPublisher()
+    }
+}
+
+// MARK: - CollectionViewManager+UICollectionViewDelegate
+extension CollectionViewManager {
     func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
         shouldHighlightItem?(indexPath) ?? true
     }
@@ -191,4 +237,5 @@ extension CollectionViewManager: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         previewForDismissingContextMenu?(configuration)
     }
+
 }

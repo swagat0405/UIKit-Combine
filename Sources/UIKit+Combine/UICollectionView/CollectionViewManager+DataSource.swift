@@ -31,7 +31,7 @@ extension CollectionViewManager: CollectionViewDataSource {
 }
 
 // MARK: - CollectionViewManager+UICollectionViewDataSource
-extension CollectionViewManager: UICollectionViewDataSource {
+extension CollectionViewManager {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         itemsInSection(section)
     }

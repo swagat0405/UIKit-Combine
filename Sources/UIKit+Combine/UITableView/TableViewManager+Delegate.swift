@@ -35,10 +35,7 @@ extension TableViewManager: TableViewDelegate {
         self.contextMenuConfigurationForRowAt = contextMenuConfigurationForRowAt
         self.titleForDeleteConfirmationButtonForRowAt = titleForDeleteConfirmationButtonForRowAt
     }
-}
-
-// MARK: - UITableViewDelegate
-extension TableViewManager {
+    
     var onDidSelectItem: AnyPublisher<IndexPath, Never> {
         selectedItemSubject.eraseToAnyPublisher()
     }
@@ -58,7 +55,10 @@ extension TableViewManager {
     var onAccessoryButtonTappedForRowWith: AnyPublisher<IndexPath, Never> {
         accessoryButtonTappedForRowWith.eraseToAnyPublisher()
     }
-    
+}
+
+// MARK: - UITableViewDelegate
+extension TableViewManager {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedItemSubject.send(indexPath)
     }

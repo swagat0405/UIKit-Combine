@@ -10,6 +10,7 @@ import UIKit
 
 public extension UIControl {
     
+    // MARK: - Publisher
     struct Publisher<Control: UIControl>: Combine.Publisher {
         public typealias Output = Control
         public typealias Failure = Never
@@ -23,6 +24,7 @@ public extension UIControl {
         }
     }
 
+    // MARK: - Subscription
     class ControlSubscription<ControlEventSubscriber: Subscriber, Control: UIControl>: Subscription where ControlEventSubscriber.Input == Control, ControlEventSubscriber.Failure == Never {
         let control: Control
         var subscriber: ControlEventSubscriber?

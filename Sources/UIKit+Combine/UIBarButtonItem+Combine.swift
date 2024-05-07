@@ -9,7 +9,8 @@ import UIKit
 import Combine
 
 public extension UIBarButtonItem {
-    
+
+    // MARK: - Publisher
     struct BarButtonItemPublisher: Publisher {
         public typealias Output = Void
         public typealias Failure = Never
@@ -26,10 +27,11 @@ public extension UIBarButtonItem {
         }
     }
     
+    // MARK: - Subscription
     class BarButtonSubscription<BarButtonSubscriber: Subscriber, BarButtonItem: UIBarButtonItem>: Subscription where BarButtonSubscriber.Input == Void, BarButtonSubscriber.Failure == Never {
         weak private var barButtonItem: BarButtonItem?
         private var subscriber: BarButtonSubscriber?
-        
+
         init(barButtonItem: BarButtonItem, subscriber: BarButtonSubscriber? = nil) {
             self.barButtonItem = barButtonItem
             self.subscriber = subscriber

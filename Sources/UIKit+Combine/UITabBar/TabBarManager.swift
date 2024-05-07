@@ -8,26 +8,26 @@
 import UIKit
 import Combine
 
-final class TabBarManager: NSObject, UITabBarDelegate {
+// MARK: - TabBarManager
+final class TabBarManager: NSObject {
+    // MARK: - Properties
     var selectedTabSubject = PassthroughSubject<UITabBarItem, Never>()
     var didBeginCustomizingTabSubject = PassthroughSubject<[UITabBarItem], Never>()
     var willBeginCustomizingTabSubject = PassthroughSubject<[UITabBarItem], Never>()
     var didEndCustomizingTabSubject = PassthroughSubject<([UITabBarItem], changed: Bool), Never>()
     var willEndCustomizingTabSubject = PassthroughSubject<([UITabBarItem], changed: Bool), Never>()
     
-    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        selectedTabSubject.send(item)
+    // MARK: - Init
+    init(withTabBar tabBar: UITabBar) {
+        super.init()
+        tabBar.delegate = self
     }
-    func tabBar(_ tabBar: UITabBar, didBeginCustomizing items: [UITabBarItem]) {
-        didBeginCustomizingTabSubject.send(items)
-    }
-    func tabBar(_ tabBar: UITabBar, willBeginCustomizing items: [UITabBarItem]) {
-        willBeginCustomizingTabSubject.send(items)
-    }
-    func tabBar(_ tabBar: UITabBar, didEndCustomizing items: [UITabBarItem], changed: Bool) {
-        didEndCustomizingTabSubject.send((items, changed))
-    }
-    func tabBar(_ tabBar: UITabBar, willEndCustomizing items: [UITabBarItem], changed: Bool) {
-        willEndCustomizingTabSubject.send((items, changed))
+    
+    deinit {
+        selectedTabSubject.send(completion: .finished)
+        didBeginCustomizingTabSubject.send(completion: .finished)
+        willBeginCustomizingTabSubject.send(completion: .finished)
+        didEndCustomizingTabSubject.send(completion: .finished)
+        willEndCustomizingTabSubject.send(completion: .finished)
     }
 }

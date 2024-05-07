@@ -8,7 +8,7 @@
 import UIKit
 
 // MARK: - CollectionViewDataSource
-protocol CollectionViewDataSource {
+protocol CollectionViewDataSource: UICollectionViewDataSource {
     func build(
         sections: (() -> Int)?,
         itemsInSection: (@escaping (Int) -> Int),

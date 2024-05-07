@@ -11,8 +11,6 @@ import UIKit
 final class TableViewManager: NSObject {
     
     // MARK: - Properties
-    let tableView: UITableView
-    
     var sections: (() -> Int)?
     var rowsInSection: ((Section) -> Int)?
     var cellBuilder: ((IndexPath) -> UITableViewCell)?
@@ -43,12 +41,10 @@ final class TableViewManager: NSObject {
     
     
     // MARK: - Init
-    init(withTableViewStyle style: UITableView.Style) {
-        self.tableView = UITableView(frame: .zero, style: style)
+    init(withTableView tableView: UITableView) {
         super.init()
-
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
+        tableView.dataSource = self
+        tableView.delegate = self
     }
 
     // MARK: - De-init
