@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 // MARK: - TabBarManager
-final class TabBarManager: NSObject {
+public final class TabBarManager: NSObject, TabBarDelegate {
     // MARK: - Properties
     var selectedTabSubject = PassthroughSubject<UITabBarItem, Never>()
     var didBeginCustomizingTabSubject = PassthroughSubject<[UITabBarItem], Never>()

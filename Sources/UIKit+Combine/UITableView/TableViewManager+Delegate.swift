@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 // MARK: - Delegate
-extension TableViewManager: TableViewDelegate {
+public extension TableViewManager {
     func actions(
         heightForRow: ((IndexPath) -> CGFloat)? = nil,
         heightForHeader: ((Int) -> CGFloat)? = nil,
@@ -39,26 +39,22 @@ extension TableViewManager: TableViewDelegate {
     var onDidSelectItem: AnyPublisher<IndexPath, Never> {
         selectedItemSubject.eraseToAnyPublisher()
     }
-    
     var onDidDeSelectItem: AnyPublisher<IndexPath, Never> {
         deSelectedItemSubject.eraseToAnyPublisher()
     }
-    
     var onDidEndEditing: AnyPublisher<IndexPath?, Never> {
         didEndEditingSubject.eraseToAnyPublisher()
     }
-    
     var onPerformPrimaryAction: AnyPublisher<IndexPath, Never> {
         performPrimaryActionAt.eraseToAnyPublisher()
     }
-    
     var onAccessoryButtonTappedForRowWith: AnyPublisher<IndexPath, Never> {
         accessoryButtonTappedForRowWith.eraseToAnyPublisher()
     }
 }
 
 // MARK: - UITableViewDelegate
-extension TableViewManager {
+public extension TableViewManager {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedItemSubject.send(indexPath)
     }

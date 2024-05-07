@@ -8,7 +8,7 @@
 import Combine
 import UIKit
 
-final class TableViewManager: NSObject {
+public final class TableViewManager: NSObject,TableViewDataSource, TableViewDelegate {
     
     // MARK: - Properties
     var sections: (() -> Int)?

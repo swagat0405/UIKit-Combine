@@ -8,7 +8,7 @@
 import UIKit
 
 // MARK: - CollectionViewManager+CollectionViewDataSource
-extension CollectionViewManager: CollectionViewDataSource {
+public extension CollectionViewManager {
     func build(
         sections: (() -> Int)? = nil,
         itemsInSection: @escaping ((Int) -> Int),
@@ -31,7 +31,7 @@ extension CollectionViewManager: CollectionViewDataSource {
 }
 
 // MARK: - CollectionViewManager+UICollectionViewDataSource
-extension CollectionViewManager {
+public extension CollectionViewManager {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         itemsInSection(section)
     }

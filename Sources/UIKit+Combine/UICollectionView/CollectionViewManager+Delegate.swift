@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 // MARK: - CollectionViewManager+CollectionViewDelegate
-extension CollectionViewManager: CollectionViewDelegate {
+public extension CollectionViewManager {
     func actions(
         shouldHighlightItem: ((IndexPath) -> Bool)?,
         shouldSelectItem: ((IndexPath) -> Bool)?,
@@ -99,7 +99,7 @@ extension CollectionViewManager: CollectionViewDelegate {
 }
 
 // MARK: - CollectionViewManager+UICollectionViewDelegate
-extension CollectionViewManager {
+public extension CollectionViewManager {
     func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
         shouldHighlightItem?(indexPath) ?? true
     }

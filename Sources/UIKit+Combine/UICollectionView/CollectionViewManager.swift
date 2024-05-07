@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class CollectionViewManager: NSObject {
+public final class CollectionViewManager: NSObject, CollectionViewDataSource, CollectionViewDelegate {
     // MARK: - Properties
     // MARK: - Data Source Properties
     var sections: (() -> Int)?

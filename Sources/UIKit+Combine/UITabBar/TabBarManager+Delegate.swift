@@ -9,7 +9,7 @@ import Combine
 import UIKit
 
 // MARK: - TabBarManager+TabBarDelegate
-extension TabBarManager: TabBarDelegate {
+public extension TabBarManager {
     var onDidSelectItem: AnyPublisher<UITabBarItem, Never> {
         selectedTabSubject.eraseToAnyPublisher()
     }
@@ -29,7 +29,7 @@ extension TabBarManager: TabBarDelegate {
 }
 
 // MARK: - TabBarManager+UITabBarDelegate
-extension TabBarManager {
+public extension TabBarManager {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         selectedTabSubject.send(item)
     }
